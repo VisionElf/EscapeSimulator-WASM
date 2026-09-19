@@ -75,7 +75,7 @@ For the full build, extract the BepInEx x64 archive linked above into
 rustup target add wasm32-unknown-unknown
 # WASM only:
 .\scripts\Build.ps1 -WasmOnly
-# Full build, including tests, diagnostic reader, and optional plugin:
+# Full build, including tests and optional plugin:
 .\scripts\Build.ps1 -GameDir 'PATH_TO_ESCAPE_SIMULATOR'
 ```
 
@@ -86,7 +86,9 @@ build dependencies, and generated files are not tracked in Git.
 ASR is vendored with a small documented patch; see [UPSTREAM.md](vendor/asr/UPSTREAM.md).
 
 Run logic tests with `cargo test --release --locked --lib`. To inspect a running
-game without controlling LiveSplit, use `.\scripts\Diagnose.ps1 -Seconds 30`.
+game without controlling LiveSplit, first build the development-only reader with
+`cargo build --release --locked --bin probe`, then use
+`.\scripts\Diagnose.ps1 -Seconds 30`. The reader is not included in release assets.
 The optional [runtime smoke test](tests/runtime-smoke/README.md) executes the WASM
 using an installed LiveSplit runtime with simulated timer callbacks.
 
