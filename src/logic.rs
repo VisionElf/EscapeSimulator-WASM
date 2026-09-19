@@ -195,7 +195,7 @@ impl Tracker {
             self.token_baseline = sample.tokens;
         }
 
-        let eligible_start = (opt.il && first_room(&sample.scene))
+        let eligible_start = opt.il
             || (opt.tutorial && sample.scene == "Toy1")
             || (opt.first_chamber && sample.scene == "Adventure1");
         out.reset = restart_reset
@@ -262,35 +262,6 @@ impl Tracker {
         out.invalidated = self.invalidated;
         out
     }
-}
-
-pub fn first_room(scene: &str) -> bool {
-    matches!(
-        scene,
-        "Toy1"
-            | "Adventure1"
-            | "Space1"
-            | "Victorian1"
-            | "Corporation1"
-            | "Holiday1"
-            | "Holiday2"
-            | "Holiday3"
-            | "Holiday4"
-            | "Holiday5"
-            | "Holiday6"
-            | "Holiday7"
-            | "Holiday8"
-            | "Race1"
-            | "Spy1"
-            | "Mayan1"
-            | "Magic1"
-            | "Western1"
-            | "Dieselpunk1"
-            | "Portal1"
-            | "AmongUs1"
-            | "PowerWash1"
-            | "Talos1"
-    )
 }
 
 pub fn last_room(scene: &str) -> bool {

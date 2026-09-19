@@ -52,9 +52,9 @@ struct Settings {
     first_chamber_start: bool,
     /// IL / individual packs
     _individual: Title,
-    /// Start on the first room of a supported pack
+    /// Start on any room
     ///
-    /// Preserves the original IL mode: starts on pack-opening rooms, not every room.
+    /// Starts at the opening fade of any playable room, including extras and new rooms.
     /// Requires Automatic start. Direct room restarts use the General reset setting.
     il_mode: bool,
     /// Reset when returning to the menu (IL mode)

@@ -34,6 +34,33 @@ fn loading(alpha: f32) -> Sample {
 }
 
 #[test]
+fn il_starts_unknown_rooms_only_when_idle_and_enabled() {
+    for (il, timer, expected) in [
+        (true, Timer::Idle, true),
+        (false, Timer::Idle, false),
+        (true, Timer::Running, false),
+        (true, Timer::Paused, false),
+        (true, Timer::Ended, false),
+    ] {
+        let mut t = Tracker::default();
+        let o = Options {
+            il,
+            ..Options::default()
+        };
+        t.step(menu(), timer, &o);
+        assert!(!t.step(loading(1.0), timer, &o).start);
+        assert!(!t.step(loading(0.8), timer, &o).start);
+        let mut r = room(1, 1.0, false, None);
+        r.scene = "FutureExtraRoom".into();
+        assert!(!t.step(r.clone(), timer, &o).start);
+        r.alpha = 0.8;
+        assert_eq!(t.step(r.clone(), timer, &o).start, expected);
+        r.alpha = 0.5;
+        assert!(!t.step(r, timer, &o).start);
+    }
+}
+
+#[test]
 fn observed_first_chamber_transition_starts_at_fade() {
     let mut t = Tracker::default();
     let o = Options {

@@ -6,7 +6,7 @@ No `asl-help` or Uhara dependency is required.
 
 ## Features
 
-- Automatic start when the opening fade begins in a selected starting room.
+- Automatic start at the opening fade: any playable room in IL mode, or selected Full Game starting rooms.
 - Splits on level completion or the last level of a pack.
 - Load removal, with Game Time paused in menus.
 - Automatic reset on a direct room restart, followed by a new start at the fade.
@@ -24,8 +24,9 @@ Requires Windows x64 and LiveSplit running in 64-bit mode with the
 5. Save your layout, then load a room from the menu to test.
 
 Attaching in an already loaded room does not start the timer retroactively.
-For automatic starts, enable Tutorial, First Chamber, or Individual pack mode;
-pack mode starts on the first room of a supported pack.
+For automatic starts, enable Tutorial, First Chamber, or **Start on any room**
+under IL / individual packs. The latter supports any playable room, including
+extras and new rooms, without a hardcoded starting-room list.
 Reset on return to the menu is a separate, optional setting.
 
 Settings are grouped into **General**, **Level splits**, **Full Game**,
