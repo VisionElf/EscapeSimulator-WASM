@@ -95,6 +95,23 @@ using an installed LiveSplit runtime with simulated timer callbacks.
 
 See [PUBLISHING.md](PUBLISHING.md) for the official catalog submission process.
 
+## Updating a local LiveSplit installation
+
+With LiveSplit open, install the WASM from `release/`:
+
+```powershell
+.\scripts\Install-LiveSplit.ps1
+# Build and test the current source before installing:
+.\scripts\Install-LiveSplit.ps1 -Build
+# Or specify the installation folder when LiveSplit is closed:
+.\scripts\Install-LiveSplit.ps1 -LiveSplitDir 'C:\Tools\LiveSplit'
+```
+
+The script detects the running LiveSplit installation, backs up the previous
+WASM, and verifies the installed file's SHA256. It only installs the WASM;
+the optional token plugin is managed separately. Reload the WASM in the Auto
+Splitting Runtime settings, or restart LiveSplit before your next run.
+
 ## GitHub releases
 
 Pushing a tag runs the release workflow: tests, full build, ZIP creation, and
