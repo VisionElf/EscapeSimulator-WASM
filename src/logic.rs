@@ -196,8 +196,8 @@ impl Tracker {
         }
 
         let eligible_start = opt.il
-            || (opt.tutorial && sample.scene == "Toy1")
-            || (opt.first_chamber && sample.scene == "Adventure1");
+            || (opt.tutorial && sample.scene == "Toy1") // Tutorial part 1 (controls introduction)
+            || (opt.first_chamber && sample.scene == "Adventure1"); // First Chamber
         out.reset = restart_reset
             || (matches!(timer, Timer::Running | Timer::Paused)
                 && opt.auto_reset
@@ -223,7 +223,7 @@ impl Tracker {
             && !self.completed
             && !old.complete
             && sample.complete
-            && sample.scene != "Toy1";
+            && sample.scene != "Toy1"; // Tutorial part 1 (controls introduction)
         if completion {
             self.completed = true;
         }
@@ -267,16 +267,16 @@ impl Tracker {
 pub fn last_room(scene: &str) -> bool {
     matches!(
         scene,
-        "Toy2"
-            | "Adventure5"
-            | "Space5"
-            | "Victorian5"
-            | "Corporation5"
-            | "Race2"
-            | "Spy4"
-            | "Mayan4"
-            | "Magic4"
-            | "Western4"
-            | "Dieselpunk4"
+        "Toy2" // Tutorial (the actual escape room)
+            | "Adventure5" // The Top
+            | "Space5" // Space Walk
+            | "Victorian5" // The Underground Lab
+            | "Corporation5" // Metaverse
+            | "Race2" // In-game name to be confirmed
+            | "Spy4" // Underwater Base
+            | "Mayan4" // Monkey Temple
+            | "Magic4" // Divination Towers
+            | "Western4" // The Train
+            | "Dieselpunk4" // The Helm Room
     )
 }
