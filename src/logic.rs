@@ -272,7 +272,7 @@ pub fn last_room(scene: &str) -> bool {
             | "Space5" // Space Walk
             | "Victorian5" // The Underground Lab
             | "Corporation5" // Metaverse
-            | "Race2" // In-game name to be confirmed
+            | "Race2" // Versus Expert (to be confirmed; Race1: Versus Apprentice)
             | "Spy4" // Underwater Base
             | "Mayan4" // Monkey Temple
             | "Magic4" // Divination Towers
