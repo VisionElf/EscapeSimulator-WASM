@@ -265,18 +265,21 @@ impl Tracker {
 }
 
 pub fn last_room(scene: &str) -> bool {
+    // Standalone rooms excluded from pack-ending splits:
+    // Holiday* = Extra; Portal1 = Portal DLC; AmongUs1 = Among Us DLC;
+    // PowerWash1 = PowerWash DLC; Talos1 = The Talos Principle DLC.
     matches!(
         scene,
-        "Toy2" // Tutorial (the actual escape room)
-            | "Adventure5" // The Top
-            | "Space5" // Space Walk
-            | "Victorian5" // The Underground Lab
-            | "Corporation5" // Metaverse
-            | "Race2" // Versus Expert (to be confirmed; Race1: Versus Apprentice)
-            | "Spy4" // Underwater Base
-            | "Mayan4" // Monkey Temple
-            | "Magic4" // Divination Towers
-            | "Western4" // The Train
-            | "Dieselpunk4" // The Helm Room
+        "Toy2" // Tutorial — Tutorial (the actual escape room)
+            | "Adventure5" // Labyrinth of Egypt — The Top
+            | "Space5" // Adrift in Space — Space Walk
+            | "Victorian5" // Edgewood Mansion — The Underground Lab
+            | "Corporation5" // Omega Corporation — Metaverse
+            | "Race2" // Versus — Versus Expert (to be confirmed; Race1: Versus Apprentice)
+            | "Spy4" // Spy DLC — Underwater Base
+            | "Mayan4" // Mayan DLC — Monkey Temple
+            | "Magic4" // Magic DLC — Divination Towers
+            | "Western4" // Wild West DLC — The Train
+            | "Dieselpunk4" // Steampunk DLC — The Helm Room
     )
 }
