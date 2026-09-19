@@ -33,6 +33,8 @@ Settings are grouped into **General**, **Level splits**, **Full Game**,
 **IL / individual packs**, and **Tokens**. Hover over an option for details.
 The General switches apply to every run type. To split only at pack endings,
 disable the every-room option; to split only on tokens, disable both level-split options.
+Extras are excluded from pack-ending splits because they have no fixed final room.
+Use **Split after every completed room** for extras; IL auto-start still applies.
 
 ### Optional: token splits
 

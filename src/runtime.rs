@@ -39,6 +39,7 @@ struct Settings {
     /// Split only at the end of a pack
     ///
     /// Disable "Split after every completed room" to split only on pack endings.
+    /// Extras have no fixed final room and are excluded. Use per-room splits for extras.
     last_pack_split: bool,
     /// Full Game — automatic start
     _full_game: Title,
