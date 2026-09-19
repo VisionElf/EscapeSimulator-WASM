@@ -54,7 +54,7 @@ jobs:
           if ($LASTEXITCODE -eq 0) {
             gh release upload $env:RELEASE_TAG @assets --clobber --repo $env:GH_REPO
           } else {
-            $flags = @('--verify-tag', '--generate-notes', '--title', "Escape Simulator Autosplitter $env:RELEASE_TAG")
+            $flags = @('--verify-tag', '--generate-notes', '--title', $env:RELEASE_TAG)
             if ($env:RELEASE_TAG -match '^v?\d+\.\d+\.\d+-') { $flags += '--prerelease' }
             gh release create $env:RELEASE_TAG @assets @flags --repo $env:GH_REPO
           }
