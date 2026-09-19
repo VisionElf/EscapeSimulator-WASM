@@ -67,16 +67,16 @@ Built with [LiveSplit ASR](https://github.com/LiveSplit/asr),
 ## Building from source
 
 Requires Rust with the `wasm32-unknown-unknown` target and Windows MSVC build tools.
-The optional plugin also requires the .NET SDK and your game's managed assemblies.
-For the full build, extract the BepInEx x64 archive linked above into
-`.deps/BepInEx-5.4.23.5/` (so it contains `BepInEx/core/`).
+The optional plugin also requires the .NET SDK. The full build downloads the
+checksum-verified BepInEx archive and restores pinned Unity 6000.3.6 reference
+assemblies from BepInEx's public NuGet feed. No game installation is needed to build.
 
 ```powershell
 rustup target add wasm32-unknown-unknown
 # WASM only:
 .\scripts\Build.ps1 -WasmOnly
 # Full build, including tests and optional plugin:
-.\scripts\Build.ps1 -GameDir 'PATH_TO_ESCAPE_SIMULATOR'
+.\scripts\Build.ps1
 ```
 
 Both build modes copy the WASM to `release/EscapeSimulator.wasm` and write checksums
@@ -93,3 +93,19 @@ The optional [runtime smoke test](tests/runtime-smoke/README.md) executes the WA
 using an installed LiveSplit runtime with simulated timer callbacks.
 
 See [PUBLISHING.md](PUBLISHING.md) for the official catalog submission process.
+
+## GitHub releases
+
+Pushing a tag runs the release workflow: tests, full build, ZIP creation, and
+publication to GitHub Releases. For example, tag `v0.1.2` produces
+`EscapeSimulator-Autosplitter-v0.1.2-win-x64.zip` containing the four files from
+`release/`. The ZIP checksum and standalone WASM are also uploaded.
+
+```powershell
+git tag v0.1.2
+git push origin v0.1.2
+```
+
+Update Cargo.toml and Cargo.lock before tagging a new version. Ordinary branch
+pushes do not publish releases. The workflow uses GitHub's built-in token; no
+personal access token or game files need to be added as secrets.

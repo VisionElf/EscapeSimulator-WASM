@@ -11,6 +11,12 @@
           "Microsoft.NETFramework.ReferenceAssemblies.net472": "1.0.3"
         }
       },
+      "UnityEngine.Modules": {
+        "type": "Direct",
+        "requested": "[6000.3.6, )",
+        "resolved": "6000.3.6",
+        "contentHash": "w7KdGN6TrGC294WJEUVa55opNN8Y5MzWrDt1paevsIyl+DF9HNnwimET3W/GRm8PJIq9mUdEziAgmNaDqM7/5A=="
+      },
       "Microsoft.NETFramework.ReferenceAssemblies.net472": {
         "type": "Transitive",
         "resolved": "1.0.3",

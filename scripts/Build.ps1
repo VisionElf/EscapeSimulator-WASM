@@ -1,6 +1,5 @@
-param([string]$GameDir, [switch]$WasmOnly)
+param([switch]$WasmOnly)
 $ErrorActionPreference = 'Stop'
-if (!$WasmOnly -and !$GameDir) { throw 'Provide -GameDir for the full build, or use -WasmOnly.' }
 Push-Location (Split-Path $PSScriptRoot -Parent)
 try {
     cargo test --release --locked --lib
@@ -10,9 +9,10 @@ try {
     New-Item -ItemType Directory -Force release | Out-Null
     Copy-Item target/wasm32-unknown-unknown/release/escape_simulator_autosplitter.wasm release/EscapeSimulator.wasm
     if (!$WasmOnly) {
+        & (Join-Path $PSScriptRoot 'Initialize-BuildDependencies.ps1')
         dotnet restore telemetry --locked-mode
         if ($LASTEXITCODE) { throw 'Telemetry restore failed' }
-        dotnet build telemetry -c Release --no-restore "-p:GameDir=$GameDir"
+        dotnet build telemetry -c Release --no-restore
         if ($LASTEXITCODE) { throw 'Telemetry build failed' }
         Copy-Item telemetry/bin/Release/net472/EscapeSimulator.Telemetry.dll release/
     }

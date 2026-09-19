@@ -12,9 +12,11 @@ Maintainers review and merge the request; inclusion is not automatic.
 1. Host the source and the English README in a public repository.
 2. Tag the release using the version in Cargo.toml, also displayed by the runtime.
    The optional telemetry plugin has its own version.
-3. Publish `EscapeSimulator.wasm`, the optional `EscapeSimulator.Telemetry.dll`,
-   and checksums as release assets. Keep decompiled game sources, local logs,
-   game DLLs, and personal setup notes out of the public release.
+3. Push a version tag to trigger `.github/workflows/release.yml`. It builds and
+   publishes `EscapeSimulator-Autosplitter-TAG-win-x64.zip`, its SHA256 checksum,
+   and a standalone `EscapeSimulator.wasm` for the catalog URL below. The ZIP
+   contains the optional telemetry plugin, WASM, README, and file checksums.
+   No game files or development probes are included.
 4. Document the tested game build, supported modes, remaining limitations,
    and source credits. Preserve the vendored ASR license files.
 
