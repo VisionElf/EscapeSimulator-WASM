@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFrameworks>net10.0;net481</TargetFrameworks><LangVersion>latest</LangVersion></PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net481'"><PlatformTarget>x64</PlatformTarget></PropertyGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net481'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="LiveSplit.AutoSplittingRuntime"><HintPath>$(LiveSplitDir)\Components\LiveSplit.AutoSplittingRuntime.dll</HintPath></Reference>
+  </ItemGroup>
+  <Target Name="CheckLiveSplitReferences" BeforeTargets="ResolveAssemblyReferences">
+    <Error Condition="!Exists('$(LiveSplitDir)\Components\LiveSplit.AutoSplittingRuntime.dll')" Text="Set LiveSplitDir to your LiveSplit installation directory." />
+  </Target>
+</Project>

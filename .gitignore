@@ -1,0 +1,12 @@
+/target/
+/.deps/
+/.tools/
+/release/
+/telemetry/bin/
+/telemetry/obj/
+/tests/runtime-smoke/bin/
+/tests/runtime-smoke/obj/
+/logs/
+*.log
+*.backup-*
+.vs/

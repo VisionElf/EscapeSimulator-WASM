@@ -1,0 +1,46 @@
+[package]
+name = "asr"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arrayvec = { version = "0.7.2", default-features = false }
+asr-derive = { path = "asr-derive", optional = true }
+bitflags = { version = "2.2.1", optional = true }
+bytemuck = { version = "1.13.1", features = ["derive", "min_const_generics"] }
+itoa = { version = "1.0.1", default-features = false, optional = true }
+ryu = { version = "1.0.11", default-features = false, optional = true }
+time = { version = "0.3.5", default-features = false }
+
+[target.'cfg(target_os = "wasi")'.dependencies]
+libm = { version = "0.2.7", optional = true }
+wasi = { version = "0.11.0+wasi-snapshot-preview1", default-features = false }
+
+[features]
+alloc = []
+derive = ["asr-derive"]
+flags = ["bitflags"]
+float-vars = ["ryu"]
+float-vars-small = ["float-vars", "ryu/small"]
+integer-vars = ["itoa"]
+signature = []
+wasi-no-std = ["libm"]
+
+# Game Engines
+godot = []
+unity = ["signature", "asr-derive?/unity"]
+unreal = ["signature"]
+
+# Emulators
+gba = ["flags", "signature"]
+gcn = ["flags"]
+genesis = ["flags", "signature"]
+ps1 = ["flags", "signature"]
+ps2 = ["flags", "signature"]
+sms = ["flags", "signature"]
+wii = ["flags"]
+
+[lints.rust]
+unexpected_cfgs = { level = "allow", check-cfg = ['cfg(doc_cfg)'] }

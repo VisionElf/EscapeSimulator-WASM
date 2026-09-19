@@ -1,0 +1,24 @@
+[package]
+name = "escape-simulator-autosplitter"
+version = "0.1.2"
+edition = "2021"
+autobins = false
+
+[lib]
+crate-type = ["rlib"]
+
+[dependencies]
+asr = { path = "vendor/asr", features = ["unity", "derive"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_System_Diagnostics_Debug", "Win32_System_Diagnostics_ToolHelp", "Win32_System_Threading", "Win32_System_Memory"] }
+
+[profile.release]
+lto = true
+panic = "abort"
+opt-level = "s"
+strip = true
+
+[[bin]]
+name = "probe"
+path = "src/bin/probe.rs"
